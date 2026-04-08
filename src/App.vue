@@ -1,30 +1,73 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { computed } from 'vue'
+import { useRoute, RouterLink, RouterView } from 'vue-router'
+
+const route = useRoute()
+const showNav = computed(() => route.name !== 'landing')
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="layout">
+    <header v-if="showNav" class="header">
+      <nav class="nav" aria-label="Main">
+        <RouterLink class="nav-link" to="/" active-class="nav-link--active" exact-active-class="nav-link--active">
+          Start
+        </RouterLink>
+        <RouterLink class="nav-link" to="/home" active-class="nav-link--active">
+          Home
+        </RouterLink>
+        <RouterLink class="nav-link" to="/profile" active-class="nav-link--active">
+          Profile
+        </RouterLink>
+      </nav>
+    </header>
+    <main class="main" :class="{ 'main--padded': showNav }">
+      <RouterView />
+    </main>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+.header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.75rem 0;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+@media (prefers-color-scheme: light) {
+  .header {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-weight: 600;
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover {
+  background-color: rgba(100, 108, 255, 0.12);
+}
+
+.nav-link--active {
+  color: #42b883;
+}
+
+.main--padded {
+  padding: 2rem 0 3rem;
 }
 </style>
