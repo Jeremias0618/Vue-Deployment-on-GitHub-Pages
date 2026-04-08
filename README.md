@@ -4,11 +4,15 @@
 [![Vite](https://img.shields.io/badge/Vite-7.x-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222?style=flat-square&logo=github&logoColor=white)](https://pages.github.com/)
+[![Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/Jeremias0618/Vue-Deployment-on-GitHub-Pages)
 
-![Visitor count](https://visitor-badge.laobi.icu/badge?page_id=YOUR_GITHUB_USERNAME.Vue-Deployment-on-GitHub-Pages)
+**Repository:** [github.com/Jeremias0618/Vue-Deployment-on-GitHub-Pages](https://github.com/Jeremias0618/Vue-Deployment-on-GitHub-Pages)  
+**Live site (after Pages is configured):** [jeremias0618.github.io/Vue-Deployment-on-GitHub-Pages](https://jeremias0618.github.io/Vue-Deployment-on-GitHub-Pages/)
+
+![Visitor count](https://visitor-badge.laobi.icu/badge?page_id=Jeremias0618.Vue-Deployment-on-GitHub-Pages)
 
 > [!NOTE]
-> Replace `YOUR_GITHUB_USERNAME` in the visitor badge URL with your GitHub username (and adjust the repo segment if your repository name differs). Use the **same** `page_id` if you add an invisible tracking pixel on the deployed site.
+> Use the same `page_id` (`Jeremias0618.Vue-Deployment-on-GitHub-Pages`) if you add an invisible visitor counter on the deployed site.
 
 Single Page Application built with **Vue 3**, **Vite**, and **TypeScript**, intended for **GitHub Pages** hosting. Components use Vue 3 [`<script setup>`](https://vuejs.org/api/sfc-script-setup.html) Single-File Components.
 
@@ -56,18 +60,10 @@ Open the URL shown in the terminal (typically `http://localhost:5173`).
 
 GitHub Pages serves static files. After `npm run build`, publish the contents of **`dist/`**.
 
-> [!IMPORTANT]
-> If the site is **not** at the domain root (for example `https://<user>.github.io/<repo>/`), set Vite’s [`base`](https://vite.dev/config/shared-options.html#base) to your repository path, including trailing slash:
+This repository targets `https://jeremias0618.github.io/Vue-Deployment-on-GitHub-Pages/`. In **`vite.config.ts`**, production builds use [`base`](https://vite.dev/config/shared-options.html#base) `/Vue-Deployment-on-GitHub-Pages/`; the dev server uses `/` so local URLs stay at the root (`npm run dev`).
 
-```ts
-// vite.config.ts
-export default defineConfig({
-  base: '/YOUR_REPO_NAME/',
-  plugins: [vue()],
-})
-```
-
-For a **user or organization** site at `https://<user>.github.io/` (repo named `<user>.github.io`), `base: '/'` is usually correct.
+> [!TIP]
+> Run `npm run build && npm run preview` and open the preview URL including the subpath to verify assets before deploying.
 
 Typical options:
 
